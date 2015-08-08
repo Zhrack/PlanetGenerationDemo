@@ -4,8 +4,8 @@
 #include "MathHelper.h"
 #include "LightHelper.h"
 #include "Effects.h"
-//#include "Vertex.h"
-//#include "RenderStates.h"
+#include "Vertex.h"
+#include "RenderStates.h"
 #include "Camera.h"
 
 class PlanetApp : public D3DApp
@@ -68,7 +68,7 @@ bool PlanetApp::Init()
 {
 	if (!D3DApp::Init())
 		return false;
-
+	return true;
 }
 
 void PlanetApp::OnResize()
