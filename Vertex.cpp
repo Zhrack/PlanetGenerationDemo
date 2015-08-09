@@ -32,31 +32,31 @@ ID3D11InputLayout* InputLayouts::Terrain = 0;
 
 void InputLayouts::InitAll(ID3D11Device* device)
 {
-	D3DX11_PASS_DESC passDesc;
+	//D3DX11_PASS_DESC passDesc;
 
-	//
-	// Pos
-	//
+	////
+	//// Pos
+	////
 
-	Effects::SkyFX->SkyTech->GetPassByIndex(0)->GetDesc(&passDesc);
-	HR(device->CreateInputLayout(InputLayoutDesc::Pos, 1, passDesc.pIAInputSignature, 
-		passDesc.IAInputSignatureSize, &Pos));
+	//Effects::SkyFX->SkyTech->GetPassByIndex(0)->GetDesc(&passDesc);
+	//HR(device->CreateInputLayout(InputLayoutDesc::Pos, 1, passDesc.pIAInputSignature, 
+	//	passDesc.IAInputSignatureSize, &Pos));
 
-	//
-	// Basic32
-	//
+	////
+	//// Basic32
+	////
 
-	Effects::BasicFX->Light1Tech->GetPassByIndex(0)->GetDesc(&passDesc);
-	HR(device->CreateInputLayout(InputLayoutDesc::Basic32, 3, passDesc.pIAInputSignature, 
-		passDesc.IAInputSignatureSize, &Basic32));
+	//Effects::BasicFX->Light1Tech->GetPassByIndex(0)->GetDesc(&passDesc);
+	//HR(device->CreateInputLayout(InputLayoutDesc::Basic32, 3, passDesc.pIAInputSignature, 
+	//	passDesc.IAInputSignatureSize, &Basic32));
 
-	//
-	// Terrain
-	//
+	////
+	//// Terrain
+	////
 
-	Effects::TerrainFX->Light1Tech->GetPassByIndex(0)->GetDesc(&passDesc);
-	HR(device->CreateInputLayout(InputLayoutDesc::Terrain, 3, passDesc.pIAInputSignature, 
-		passDesc.IAInputSignatureSize, &Terrain));
+	//Effects::TerrainFX->Light1Tech->GetPassByIndex(0)->GetDesc(&passDesc);
+	//HR(device->CreateInputLayout(InputLayoutDesc::Terrain, 3, passDesc.pIAInputSignature, 
+	//	passDesc.IAInputSignatureSize, &Terrain));
 }
 
 void InputLayouts::DestroyAll()

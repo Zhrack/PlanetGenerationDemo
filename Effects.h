@@ -9,34 +9,55 @@
 #define EFFECTS_H
 
 #include "d3dUtil.h"
+#include "Shader.h"
 
-#pragma region Effect
-class Effect
+namespace DXFramework
 {
-public:
-	Effect(ID3D11Device* device, const std::wstring& filename);
-	virtual ~Effect();
 
-private:
-	Effect(const Effect& rhs);
-	Effect& operator=(const Effect& rhs);
+	template<typename T>
+	class Shader;
+	//forward declare templates
+	typedef Shader<ID3D11VertexShader> VertexShader;
+	typedef Shader<ID3D11GeometryShader> GeometryShader;
+	typedef Shader<ID3D11DomainShader> DomainShader;
+	typedef Shader<ID3D11HullShader> HullShader;
+	typedef Shader<ID3D11PixelShader> PixelShader;
 
-protected:
+	class Effect
+	{
+	public:
+		Effect(ID3D11Device* device);
+		virtual ~Effect();
 
-};
+	protected:
+		virtual void Draw(ID3D11DeviceContext* context) = 0;
+
+	protected:
+		D3D_PRIMITIVE_TOPOLOGY topology;
+
+		VertexShader* vertexShader;
+		GeometryShader* geoShader;
+		DomainShader* domainShader;
+		HullShader* hullShader;
+		PixelShader* pixelShader;
+	private:
+		Effect(const Effect& rhs);
+		Effect& operator=(const Effect& rhs);
+	};
 #pragma endregion
 
 #pragma region Effects
-class Effects
-{
-public:
-	static void InitAll(ID3D11Device* device);
-	static void DestroyAll();
+	class Effects
+	{
+	public:
+		static void InitAll(ID3D11Device* device);
+		static void DestroyAll();
 
-	static BasicEffect* BasicFX;
-	static SkyEffect* SkyFX;
-	static TerrainEffect* TerrainFX;
-};
-#pragma endregion
+		//static BasicEffect* BasicFX;
+		//static SkyEffect* SkyFX;
+		//static TerrainEffect* TerrainFX;
+	};
+
+}
 
 #endif // EFFECTS_H
