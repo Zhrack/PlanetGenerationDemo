@@ -13,16 +13,6 @@
 
 namespace DXFramework
 {
-
-	template<typename T>
-	class Shader;
-	//forward declare templates
-	typedef Shader<ID3D11VertexShader> VertexShader;
-	typedef Shader<ID3D11GeometryShader> GeometryShader;
-	typedef Shader<ID3D11DomainShader> DomainShader;
-	typedef Shader<ID3D11HullShader> HullShader;
-	typedef Shader<ID3D11PixelShader> PixelShader;
-
 	class Effect
 	{
 	public:
@@ -30,16 +20,11 @@ namespace DXFramework
 		virtual ~Effect();
 
 	protected:
+		virtual void Update(float dt){}
 		virtual void Draw(ID3D11DeviceContext* context) = 0;
 
 	protected:
 		D3D_PRIMITIVE_TOPOLOGY topology;
-
-		VertexShader* vertexShader;
-		GeometryShader* geoShader;
-		DomainShader* domainShader;
-		HullShader* hullShader;
-		PixelShader* pixelShader;
 	private:
 		Effect(const Effect& rhs);
 		Effect& operator=(const Effect& rhs);
